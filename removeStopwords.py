@@ -1,8 +1,5 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# coding=utf-8
-
-# Python2.7
 """Removes punctuation from file.
 
 Usage:
@@ -25,12 +22,12 @@ Options:
 """
 
 
-from docopt import docopt
-from nltk.corpus import stopwords
 import csv
 import sys
 import unicodedata
-encoding = "utf-8"
+
+from docopt import docopt
+from nltk.corpus import stopwords
 
 
 def is_string_not_empty(s):
@@ -120,14 +117,12 @@ def remove_accents(text):
     """Removes diacritics from a given text.
 
     """
-    input_str = text.decode(encoding)
-    nfkd_form = unicodedata.normalize('NFKD', input_str)
+
+    nfkd_form = unicodedata.normalize('NFKD', text)
     return u"".join([c for c in nfkd_form if not unicodedata.combining(c)])
 
 
 def main():
-    reload(sys)
-    sys.setdefaultencoding("utf8")
     category_row = int(arguments["--category"])
     text_row = int(arguments["--text"])
     filename = arguments["FILE"]

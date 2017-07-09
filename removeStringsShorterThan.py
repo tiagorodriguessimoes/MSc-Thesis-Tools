@@ -1,8 +1,5 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# coding=utf-8
-
-# Python2.7
 """Removes terms shorter than N size from CSV file.
 
 Usage:
@@ -22,19 +19,32 @@ Options:
 """
 
 
-from docopt import docopt
 import csv
-import string
 import sys
-encoding = "utf-8"
+
+from docopt import docopt
+
 
 def print_csv(category, text, k):
+    """
+
+    :param category:
+    :param text: string
+    :param k: size
+    :return:
+    """
     if not is_shorter_than(k, text):
         print ("{category},\"{text}\""
                .format(category=category, text=text.strip()))
 
 
 def is_shorter_than(k, text):
+    """
+
+    :param k: size
+    :param text: string
+    :return:
+    """
     if len(text.split()) < k:
         return True
     else:
@@ -42,8 +52,6 @@ def is_shorter_than(k, text):
 
 
 def main():
-    reload(sys)
-    sys.setdefaultencoding("utf8")
     category_row = int(arguments["--category"])
     text_row = int(arguments["--text"])
     filename = arguments["FILE"]
@@ -61,5 +69,4 @@ def main():
 
 if __name__ == "__main__":
     arguments = docopt(__doc__)
-    # print(arguments)
     main()

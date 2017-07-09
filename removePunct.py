@@ -1,8 +1,5 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# coding=utf-8
-
-# Python2.7
 """Removes punctuation from CSV file.
 
 Usage:
@@ -23,11 +20,11 @@ Options:
 """
 
 
-from docopt import docopt
 import csv
 import string
 import sys
-encoding = "utf-8"
+
+from docopt import docopt
 
 
 def is_string_not_empty(s):
@@ -58,8 +55,6 @@ def remove_punctuation(text):
 
 
 def main():
-    reload(sys)
-    sys.setdefaultencoding("utf8")
     category_row = int(arguments["--category"])
     text_row = int(arguments["--text"])
     filename = arguments["FILE"]

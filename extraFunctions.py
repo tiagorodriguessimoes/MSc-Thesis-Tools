@@ -1,7 +1,5 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # coding=utf-8
-
-# Python2.7
 """ Functions that might be useful for text preprocessing.
 """
 import HTMLParser

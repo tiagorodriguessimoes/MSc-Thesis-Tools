@@ -1,8 +1,8 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# coding=utf-8
-"""Transforms a csv file into a arff file. It is expected a csv file with two
-    columns only.
+"""Transforms a csv file into a arff file (WEKA). It is expected a csv file
+    with two columns only. Developed for Master's Thesis: Automating the
+    Response Processes in TAP PORTUGAL’s Social Networks.
 
 Usage:
     csv2arff.py [--category=<index> --text=<index>] FILE
@@ -16,31 +16,30 @@ Options:
 
 """
 
-from docopt import docopt
-from os.path import basename
 import csv
 import sys
-encoding = "utf-8"
+from os.path import basename
+
+from docopt import docopt
 
 
 def print_arff_header(relation_name, set_category):
-    """Prints a formated arff header.
-    relation_name       string with the relation name.
-    set_category        set containing the categories.
-
-    This print has 2 attibutes.
-    Attribute 1: text
-    Attribute 2: category
+    """
+        Prints a formatted arff header.
 
     Example:
     @relation   xyz
     @attribute  text1       string
     @attribute  category1   {A, B, C}
     @data
+    A, "this is the first string"
+
+    :param relation_name: string with the relation name
+    :param set_category: set containing the categories
 
     """
-
     string_category = ", ".join(str(elem) for elem in set_category)
+
     print("@relation {relation_name}"
           .format(relation_name=relation_name))
     print("@attribute {attribute_name} {attribute_type}"
@@ -53,19 +52,20 @@ def print_arff_header(relation_name, set_category):
 
 
 def print_arff_row(category, text):
-    """Print the content
+    """
+        Print the content into the arff
 
     Example:
     CATEGORY1, "TEXT1"
 
-    """
+    :param category: string / char
+    :param text:
 
-    print "{category},\"{text}\"".format(category=category.upper(), text=text)
+    """
+    print("{category},\"{text}\"".format(category=category.upper(), text=text))
 
 
 def main():
-    reload(sys)
-    sys.setdefaultencoding("utf8")
     filename = arguments["FILE"]
     with open(filename, "rb") as f:
         reader = csv.reader(f)

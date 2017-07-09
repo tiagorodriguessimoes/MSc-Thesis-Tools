@@ -1,8 +1,5 @@
-# !/usr/bin/python
+# !/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# coding=utf-8
-
-# Python2.7
 """Replaces number for dummies or delete the numbers. Only the selected
 options are converted to dummies. The all the other numbers are deleted.
 
@@ -36,11 +33,11 @@ Options:
 
 """
 
-from docopt import docopt
 import csv
 import re
 import sys
-encoding = "utf-8"
+
+from docopt import docopt
 
 
 def is_string_not_empty(s):
@@ -95,8 +92,6 @@ def replace_numbers(text):
 
 
 def main():
-    reload(sys)
-    sys.setdefaultencoding("utf8")
     category_row = int(arguments["--category"])
     text_row = int(arguments["--text"])
     filename = arguments["FILE"]
